@@ -1,7 +1,7 @@
 public class GameManager : MonoSingleton<GameManager>
 {
-    public int RowCount;
-    public int ColumnCount;
+    public int RowCount = 7;
+    public int ColumnCount = 7;
 
     public string PlayerOneName;
     public string PlayerTwoName;

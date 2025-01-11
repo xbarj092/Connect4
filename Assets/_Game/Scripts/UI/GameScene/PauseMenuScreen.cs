@@ -4,6 +4,7 @@ public class PauseMenuScreen : GameScreen
 {
     public void Resume()
     {
+        Time.timeScale = 1;
         CloseScreen();
     }
 

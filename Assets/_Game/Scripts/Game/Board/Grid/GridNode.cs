@@ -12,7 +12,7 @@ public class GridNode
     public bool Blue;
 
     public BoardTile BoardTile;
-
+    //Konstruktor pro sestavení políèek v møížce
     public GridNode(Grid<GridNode> grid, int x, int y)
     {
         _grid = grid;

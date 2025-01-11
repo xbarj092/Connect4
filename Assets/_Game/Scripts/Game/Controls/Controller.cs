@@ -5,9 +5,20 @@ public class Controller : MonoBehaviour
     [SerializeField] private GameBoard _gameBoard;
 
     private Column _selectedColumn;
+    private BaseCanvasController _activeCanvas;
+
+    private void Awake()
+    {
+        _activeCanvas = FindFirstObjectByType<BaseCanvasController>();
+    }
 
     private void Update()
     {
+        if (_activeCanvas.ActiveGameScreen != null && _activeCanvas.ActiveGameScreen.GameScreenType == GameScreenType.Pause)
+        {
+            return;
+        }
+
         HandleMouseInput();
 
         if (_selectedColumn == null)

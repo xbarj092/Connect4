@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BaseCanvasController : MonoBehaviour
 {
+    public GameScreen ActiveGameScreen;
+
     protected Dictionary<GameScreenType, GameScreen> _instantiatedScreens = new();
 
     private void OnEnable()
@@ -24,8 +26,6 @@ public class BaseCanvasController : MonoBehaviour
         {
             InstantiateScreen(gameScreenType);
         }
-
-        _instantiatedScreens[gameScreenType].Open();
     }
 
     protected void CloseGameScreen(GameScreenType gameScreenType)
@@ -35,11 +35,7 @@ public class BaseCanvasController : MonoBehaviour
             GameScreenType nextScreenType = GetActiveGameScreen(gameScreenType);
             if (nextScreenType != GameScreenType.None)
             {
-                if (_instantiatedScreens.TryGetValue(nextScreenType, out GameScreen existingScreen) && existingScreen != null)
-                {
-                    existingScreen.Open();
-                }
-                else
+                if (!_instantiatedScreens.TryGetValue(nextScreenType, out GameScreen existingScreen) || existingScreen == null)
                 {
                     InstantiateScreen(nextScreenType);
                 }
@@ -70,7 +66,7 @@ public class BaseCanvasController : MonoBehaviour
         if (screenInstance != null)
         {
             _instantiatedScreens[screenInstance.GameScreenType] = screenInstance;
-            ScreenManager.Instance.SetActiveGameScreen(screenInstance);
+            ActiveGameScreen = screenInstance;
         }
     }
 

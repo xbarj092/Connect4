@@ -10,18 +10,19 @@ public class SceneLoadManager : MonoSingleton<SceneLoadManager>
 
     public void GoBootToMenu()
     {
+        Time.timeScale = 1;
         SceneLoader.OnSceneLoadDone += OnBootToMenuLoadDone;
         SceneLoader.LoadScene(SceneLoader.Scenes.MenuScene);
     }
 
     private void OnBootToMenuLoadDone(SceneLoader.Scenes scene)
     {
-        Time.timeScale = 1;
         SceneLoader.OnSceneLoadDone -= OnBootToMenuLoadDone;
     }
 
     public void GoMenuToGame()
     {
+        Time.timeScale = 1;
         SceneLoader.OnSceneLoadDone += OnMenuToGameLoadDone;
         SceneLoader.LoadScene(SceneLoader.Scenes.GameScene, toUnload: SceneLoader.Scenes.MenuScene);
     }
@@ -33,18 +34,19 @@ public class SceneLoadManager : MonoSingleton<SceneLoadManager>
 
     public void GoGameToMenu()
     {
+        Time.timeScale = 1;
         SceneLoader.OnSceneLoadDone += OnGameToMenuLoadDone;
         SceneLoader.LoadScene(SceneLoader.Scenes.MenuScene, toUnload: SceneLoader.Scenes.GameScene);
     }
 
     private void OnGameToMenuLoadDone(SceneLoader.Scenes scenes)
     {
-        Time.timeScale = 1;
         SceneLoader.OnSceneLoadDone -= OnGameToMenuLoadDone;
     }
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
         SceneLoader.OnSceneLoadDone += OnRestartGameDone;
         SceneLoader.LoadScene(SceneLoader.Scenes.GameScene, toUnload: SceneLoader.Scenes.GameScene);
     }

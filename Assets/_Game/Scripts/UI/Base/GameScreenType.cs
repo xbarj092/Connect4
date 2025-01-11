@@ -1,3 +1,4 @@
+// Pøiøazení názvu jednotlivých obrazovek k indexùm
 public enum GameScreenType
 {
     None = 0,

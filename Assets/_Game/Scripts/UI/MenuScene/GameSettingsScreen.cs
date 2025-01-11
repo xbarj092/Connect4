@@ -2,28 +2,16 @@ using System.Collections.Generic;
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameSettingsScreen : GameScreen
 {
-    [Header("Variables")]
     [SerializeField] private int _shortPlayerNameThreshold;
     [SerializeField] private int _longPlayerNameThreshold;
-
-    [Header("Properties")]
-    [SerializeField] private TMP_Text _rowCountText;
-    [SerializeField] private TMP_Text _columnCountText;
-
-    [SerializeField] private Slider _rowCount;
-    [SerializeField] private Slider _columnCount;
 
     [SerializeField] private TMP_InputField _playerOneName;
     [SerializeField] private TMP_InputField _playerTwoName;
 
     [SerializeField] private TMP_Text _errorText;
-
-    private const string ROW_COUNT_TEXT_PREFIX = "Row count: ";
-    private const string COLUMN_COUNT_TEXT_PREFIX = "Column count: ";
 
     private const string ERROR_EMPTY_PLAYER_ONE_NAME = "Please fill out player one name!";
     private const string ERROR_EMPTY_PLAYER_TWO_NAME = "Please fill out player two name!";
@@ -32,16 +20,6 @@ public class GameSettingsScreen : GameScreen
     private const string ERROR_LONG_PLAYER_ONE_NAME = "Player one name is too long!";
     private const string ERROR_LONG_PLAYER_TWO_NAME = "Player two name is too long!";
     private const string ERROR_SAME_PLAYER_NAMES = "Players cannot have same names!";
-
-    public void OnRowCountChanged()
-    {
-        _rowCountText.text = ROW_COUNT_TEXT_PREFIX + _rowCount.value;
-    }
-
-    public void OnColumnCountChanged()
-    {
-        _columnCountText.text = COLUMN_COUNT_TEXT_PREFIX + _columnCount.value;
-    }
 
     public void SaveAndPlay()
     {
@@ -56,9 +34,6 @@ public class GameSettingsScreen : GameScreen
 
     private void SaveGameSettings()
     {
-        GameManager.Instance.RowCount = Mathf.RoundToInt(_rowCount.value);
-        GameManager.Instance.ColumnCount = Mathf.RoundToInt(_columnCount.value);
-
         GameManager.Instance.PlayerOneName = _playerOneName.text;
         GameManager.Instance.PlayerTwoName = _playerTwoName.text;
     }

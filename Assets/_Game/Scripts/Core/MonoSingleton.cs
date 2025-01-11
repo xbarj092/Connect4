@@ -1,5 +1,5 @@
 using UnityEngine;
-
+// MonoSingleton zaruèuje pouze jednu instanci tøídy v celé høe
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
     private static T m_Instance = null;
